@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تحديثات التطبيق</title>
+  <style>
+    :root {
+      --primary-color: #007236;
+      --text-color: #151515;
+      --bg-color: #f6f7f8;
+      --card-bg: #ffffff;
+      --muted-color: #6b7280;
+    }
+    /* Dark mode support */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --text-color: #f0fdf4;
+        --bg-color: #1f2937;
+        --card-bg: #374151;
+        --muted-color: #a3a3a3;
+      }
+    }
+    body {
+      font-family: 'Cairo', system-ui, sans-serif;
+      text-align: center;
+      padding: 20px;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background-color: var(--card-bg);
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+    }
+    h1 {
+      color: var(--primary-color);
+      font-size: 28px;
+    }
+    .version-info {
+      color: var(--muted-color);
+      margin-top: 10px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .changelog {
+      text-align: right;
+      margin-top: 25px;
+    }
+    .changelog h2 {
+      font-size: 20px;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 5px;
+      color: var(--primary-color);
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin-top: 15px;
+    }
+    li {
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+    .download-btn {
+      display: inline-block;
+      padding: 14px 32px;
+      background-color: var(--primary-color);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      margin-top: 30px;
+      transition: background-color 0.2s;
+    }
+    .download-btn:hover {
+      background-color: #005a2e;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>تحديث جديد متاح!</h1>
+    <div class="version-info">الإصدار: 1.2 • تاريخ: 17 أغسطس 2025</div>
+
+    <a href="https://jihadmohmed.github.io/my-app-updates/app.apk" class="download-btn" download>تنزيل التحديث</a>
+
+    <div class="changelog">
+      <h2>ما الجديد في هذا الإصدار؟</h2>
+      <ul>
+        <li>✅ **إصلاحات الأداء:** تحسين سرعة البحث وتصفح البيانات.</li>
+        <li>✅ **دعم الوضع الليلي:** تم إضافة الوضع الليلي للجدول لتحسين الرؤية.</li>
+        <li>✅ **تحسينات الواجهة:** تعديلات بسيطة على التصميم لتجربة أفضل.</li>
+      </ul>
+    </div>
+  </div>
+
+</body>
+</html>
