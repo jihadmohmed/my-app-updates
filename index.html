@@ -4,85 +4,137 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تحديثات التطبيق</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
     <style>
         :root {
-            --primary-color: #007236;
-            --text-color: #151515;
-            --bg-color: #f6f7f8;
-            --card-bg: #ffffff;
-            --muted-color: #6b7280;
+            --ep-green: #007236;
+            --ep-green-2: #089a4b;
+            --ep-dark: #004d1a;
+            --ep-ink: #151515;
+            --ep-muted: #6b7280;
+            --ep-bg: #f6f7f8;
+            --ep-card: #ffffff;
+            --radius: 14px;
         }
-        /* Dark mode support */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --text-color: #f0fdf4;
-                --bg-color: #1f2937;
-                --card-bg: #374151;
-                --muted-color: #a3a3a3;
-            }
+
+        /* Dark mode variables */
+        body.dark-mode {
+            --ep-ink: #f0fdf4;
+            --ep-muted: #a3a3a3;
+            --ep-bg: #1f2937;
+            --ep-card: #374151;
         }
+
+        body.dark-mode h1, body.dark-mode .section-title, body.dark-mode .changelog h2 {
+            color: var(--ep-green);
+        }
+
+        body.dark-mode .download-btn {
+            background-color: var(--ep-green-2);
+        }
+        
+        body.dark-mode .changelog h2, body.dark-mode .section-title {
+            border-bottom-color: #4b5563;
+        }
+
+        body.dark-mode .signature {
+            background: var(--ep-card);
+            border-color: #4b5563;
+            box-shadow: 0 8px 24px rgba(0,0,0,.55);
+        }
+
+        body.dark-mode .signature .name{
+            color: var(--ep-green-2);
+        }
+
+        body.dark-mode .signature .position{
+            color: var(--ep-muted);
+        }
+
+        body.dark-mode .install-step {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
         body {
-            font-family: 'Cairo', system-ui, sans-serif;
+            font-family: 'Cairo', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
             text-align: center;
-            padding: 20px;
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            padding: 20px 16px;
+            background-color: var(--ep-bg);
+            color: var(--ep-ink);
             transition: background-color 0.3s, color 0.3s;
             line-height: 1.6;
+            margin: 0;
+            min-height: 100vh;
+            position: relative;
         }
+
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            background-color: var(--card-bg);
+            margin: 0 auto 20px;
+            background-color: var(--ep-card);
             padding: 30px;
-            border-radius: 14px;
+            border-radius: var(--radius);
             box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+            border: 1px solid #e5e7eb;
+            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
         }
+
         h1 {
-            color: var(--primary-color);
+            color: var(--ep-green);
             font-size: 28px;
+            margin: 0 0 10px;
         }
+
         .version-info {
-            color: var(--muted-color);
-            margin-top: 10px;
+            color: var(--ep-muted);
             font-size: 16px;
             font-weight: 600;
+            margin-bottom: 25px;
         }
+
         .changelog {
             text-align: right;
             margin-top: 25px;
         }
+
         .changelog h2 {
             font-size: 20px;
             border-bottom: 2px solid #e5e7eb;
             padding-bottom: 5px;
-            color: var(--primary-color);
+            color: var(--ep-green);
         }
+
         ul {
             list-style-type: none;
             padding: 0;
             margin-top: 15px;
         }
+
         li {
             margin-bottom: 10px;
             font-size: 15px;
         }
+
         .download-btn {
             display: inline-block;
             padding: 14px 32px;
-            background-color: var(--primary-color);
+            background-color: var(--ep-green);
             color: #fff;
             text-decoration: none;
             border-radius: 10px;
             font-weight: bold;
             margin-top: 30px;
             transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
         }
+
         .download-btn:hover {
-            background-color: #005a2e;
+            background-color: var(--ep-green-2);
         }
+
         .section-title {
-            color: var(--primary-color);
+            color: var(--ep-green);
             font-size: 20px;
             margin-top: 40px;
             text-align: right;
@@ -93,23 +145,29 @@
             justify-content: flex-end;
             gap: 10px;
         }
+
         .install-step {
             text-align: right;
             margin-top: 20px;
-            background-color: var(--card-bg);
+            background-color: var(--ep-card);
             padding: 20px;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
         }
+
         .install-step h3 {
-            color: var(--primary-color);
+            color: var(--ep-green);
             font-size: 18px;
+            margin-top: 0;
             margin-bottom: 10px;
         }
+
         .install-step p {
-            color: var(--muted-color);
+            color: var(--ep-muted);
             font-size: 15px;
         }
+
         .install-step img {
             width: 100%;
             max-width: 400px;
@@ -119,10 +177,40 @@
             margin-inline-start: auto;
             margin-inline-end: auto;
         }
-        .footer {
-            margin-top: 40px;
-            font-size: 14px;
-            color: var(--muted-color);
+        
+        .signature {
+            position: fixed;
+            bottom: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--ep-card);
+            border: 2px solid var(--ep-green);
+            border-radius: 12px;
+            padding: 8px 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,.15);
+            text-align: center;
+            z-index: 999;
+            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+        }
+
+        .signature .name {
+            font-weight: 800;
+            font-size: 10px;
+            color: var(--ep-green);
+            margin-bottom: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .signature .position {
+            font-size: 11px;
+            color: var(--ep-muted);
+            font-weight: 600;
+            line-height: 1.3;
+            transition: color 0.3s ease;
+        }
+
+        .signature-credit {
+          display: none; /* Hide the old footer credit */
         }
     </style>
 </head>
@@ -167,10 +255,24 @@
         </div>
     </div>
 
-    <div class="footer">
-        رئيس قسم الدعم الفني منطقة بريد البحيرة © 2025 جهاد عبد الكريم
+    <div class="signature">
+      <div class="name">جهاد عبدالكريم</div>
+      <div class="position">رئيس قسم الدعم الفني<br>منطقة بريد البحيرة</div>
     </div>
 
 </body>
 </html>
 
+<script>
+    // Theme logic
+    const THEME_KEY = 'ep_theme';
+    function applyThemeFromLocalStorage() {
+        const theme = localStorage.getItem(THEME_KEY);
+        if (theme === 'dark') {
+            document.body.classList.add('dark-mode');
+        } else {
+            document.body.classList.remove('dark-mode');
+        }
+    }
+    document.addEventListener('DOMContentLoaded', applyThemeFromLocalStorage);
+</script>
