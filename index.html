@@ -32,7 +32,7 @@
         body.dark-mode .download-btn {
             background-color: var(--ep-green-2);
         }
-        
+
         body.dark-mode .changelog h2, body.dark-mode .section-title {
             border-bottom-color: #4b5563;
         }
@@ -177,7 +177,7 @@
             margin-inline-start: auto;
             margin-inline-end: auto;
         }
-        
+
         .signature {
             position: fixed;
             bottom: 12px;
@@ -231,7 +231,7 @@
             </ul>
         </div>
     </div>
-    
+
     <div class="container">
         <h2 class="section-title">
             كيفية تثبيت التطبيق
@@ -243,7 +243,7 @@
             <p>
                 قبل التثبيت، قد تظهر لك رسالة تحذير بأن التطبيق من مصدر غير معروف. هذا طبيعي لأنك تقوم بتثبيته مباشرةً من المتصفح. اضغط على "الإعدادات" ثم قم بتفعيل خيار "السماح بالتثبيت من هذا المصدر".
             </p>
-            
+
         </div>
 
         <div class="install-step">
@@ -251,7 +251,7 @@
             <p>
                 بعض الأجهزة قد تظهر تحذيراً من Google Play Protect. يمكنك تجاهل هذا التحذير بأمان. اضغط على "مزيد من التفاصيل" أو "More details" ثم "التثبيت على أي حال" أو "Install anyway".
             </p>
-            
+
         </div>
     </div>
 
@@ -260,19 +260,11 @@
       <div class="position">رئيس قسم الدعم الفني<br>منطقة بريد البحيرة</div>
     </div>
 
+    <script>
+        // Check for system dark mode preference
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            document.body.classList.add('dark-mode');
+        }
+    </script>
 </body>
 </html>
-
-<script>
-    // Theme logic
-    const THEME_KEY = 'ep_theme';
-    function applyThemeFromLocalStorage() {
-        const theme = localStorage.getItem(THEME_KEY);
-        if (theme === 'dark') {
-            document.body.classList.add('dark-mode');
-        } else {
-            document.body.classList.remove('dark-mode');
-        }
-    }
-    document.addEventListener('DOMContentLoaded', applyThemeFromLocalStorage);
-</script>
