@@ -1,221 +1,320 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تحديثات التطبيق</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
-    <style>
-        :root {
-            --ep-green: #007236;
-            --ep-green-2: #089a4b;
-            --ep-dark: #004d1a;
-            --ep-ink: #151515;
-            --ep-muted: #6b7280;
-            --ep-bg: #f6f7f8;
-            --ep-card: #ffffff;
-            --radius: 14px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>تحديثات التطبيق</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet" />
 
-        /* Dark mode variables */
-        body.dark-mode {
-            --ep-ink: #f0fdf4;
-            --ep-muted: #a3a3a3;
-            --ep-bg: #1f2937;
-            --ep-card: #374151;
-        }
+<style>
+    :root{
+        --ep-green:#007236;
+        --ep-green-2:#089a4b;
+        --ep-dark:#004d1a;
+        --ep-ink:#151515;
+        --ep-muted:#6b7280;
+        --ep-bg:#f6f7f8;
+        --ep-card:#ffffff;
+        --radius:14px;
+        --gold:#f59e0b;
+    }
 
-        body.dark-mode h1, body.dark-mode .section-title, body.dark-mode .changelog h2 {
-            color: var(--ep-green);
-        }
+    /* Dark mode variables */
+    body.dark-mode {
+        --ep-ink: #f0fdf4;
+        --ep-muted: #a3a3a3;
+        --ep-bg: #1f2937;
+        --ep-card: #374151;
+    }
+    body.dark-mode header{
+        background:linear-gradient(90deg,#004d1a,#089a4b);
+    }
+    body.dark-mode .icon-btn{
+        background:#fff3;
+        color:#fff;
+    }
+    body.dark-mode .icon-btn:hover{
+        background:#fff5;
+    }
+    body.dark-mode .toggle-btn{
+        background:#1d4ed8;
+        color:#fff;
+    }
+    body.dark-mode .toolbar{
+        background:var(--ep-card);
+        border-bottom:1px solid #4b5563;
+    }
+    body.dark-mode .update-box {
+        background: var(--ep-card);
+        border: 1px solid #4b5563;
+        box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+    }
+    body.dark-mode h1 {
+        color: var(--ep-ink);
+    }
 
-        body.dark-mode .download-btn {
-            background-color: var(--ep-green-2);
-        }
+    /* Dark mode signature */
+    body.dark-mode .signature {
+        background: var(--ep-card);
+        border-color: #4b5563;
+        box-shadow: 0 8px 24px rgba(0,0,0,.55);
+    }
+    body.dark-mode .signature .name{
+        color: var(--ep-green-2);
+    }
+    body.dark-mode .signature .position{
+        color: var(--ep-muted);
+    }
 
-        body.dark-mode .changelog h2, body.dark-mode .section-title {
-            border-bottom-color: #4b5563;
-        }
+    body.dark-mode .container {
+        background-color: var(--ep-card);
+        border: 1px solid #4b5563;
+        box-shadow: 0 8px 22px rgba(0,0,0,0.5);
+    }
+    body.dark-mode .changelog h2, body.dark-mode .section-title {
+        border-bottom-color: #4b5563;
+    }
+    body.dark-mode .download-btn {
+        background-color: var(--ep-green-2);
+    }
+    body.dark-mode .install-step {
+        background-color: var(--ep-card);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+    }
+    body.dark-mode .install-step h3 {
+        color: var(--ep-green-2);
+    }
+    body.dark-mode .install-step p {
+        color: var(--ep-muted);
+    }
 
-        body.dark-mode .signature {
-            background: var(--ep-card);
-            border-color: #4b5563;
-            box-shadow: 0 8px 24px rgba(0,0,0,.55);
-        }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+        margin:0;
+        font-family:'Cairo',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+        background:var(--ep-bg);
+        color:var(--ep-ink);
+        transition: background-color 0.3s ease, color 0.3s ease;
+        padding: 0;
+    }
 
-        body.dark-mode .signature .name{
-            color: var(--ep-green-2);
-        }
+    /* Header */
+    header{
+        position:relative;
+        background:linear-gradient(90deg,var(--ep-green),var(--ep-green-2));
+        color:#fff;
+        padding:8px 16px;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        box-shadow:0 6px 18px rgba(0,0,0,.12);
+    }
+    .brand{
+        display:flex;
+        align-items:center;
+        gap:18px;
+        cursor:pointer;
+    }
+    .brand img{height:60px;width:auto;object-fit:contain}
+    .brand h1{margin:0;font-size:20px;font-weight:700;letter-spacing:.2px;white-space:nowrap}
+    .actions-bar{display:flex;gap:8px;align-items:center}
+    .icon-btn{
+        border:0;background:#ffffff1a;color:#fff;
+        padding:10px 12px;border-radius:999px;cursor:pointer;font-weight:700;
+        transition:background .2s ease;
+    }
+    .icon-btn:hover{background:#ffffff2a}
+    .toggle-btn{
+        border:0;padding:10px 14px;font-weight:700;font-size:14px;border-radius:999px;
+        background:#fff;color:#0f172a;cursor:pointer;transition:.2s;min-width:132px;text-align:center
+    }
+    .toggle-btn.primary{background:#0ea75a;color:#fff}
 
-        body.dark-mode .signature .position{
-            color: var(--ep-muted);
-        }
+    /* Main content */
+    .main-content {
+        padding: 20px 16px;
+    }
+    
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: var(--ep-card);
+        padding: 30px;
+        border-radius: var(--radius);
+        box-shadow: 0 8px 22px rgba(0,0,0,0.06);
+        border: 1px solid #e5e7eb;
+        transition: background-color 0.3s, border-color 0.3s, color 0.3s, box-shadow 0.3s;
+        width: 100%;
+        text-align: center;
+    }
 
-        body.dark-mode .install-step {
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-        }
+    h1 {
+        color: var(--ep-green);
+        font-size: 28px;
+        margin: 0 0 10px;
+        transition: color 0.3s;
+    }
 
-        body {
-            font-family: 'Cairo', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-            text-align: center;
-            padding: 20px 16px;
-            background-color: var(--ep-bg);
-            color: var(--ep-ink);
-            transition: background-color 0.3s, color 0.3s;
-            line-height: 1.6;
-            margin: 0;
-            min-height: 100vh;
-            position: relative;
-        }
+    .version-info {
+        color: var(--ep-muted);
+        font-size: 16px;
+        font-weight: 600;
+        margin-bottom: 25px;
+        transition: color 0.3s;
+    }
 
+    .download-btn {
+        display: inline-block;
+        padding: 14px 32px;
+        background-color: var(--ep-green);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: bold;
+        margin-top: 30px;
+        transition: background-color 0.2s;
+        border: none;
+        cursor: pointer;
+    }
+
+    .download-btn:hover {
+        background-color: #005a2e;
+    }
+
+    .changelog {
+        text-align: right;
+        margin-top: 25px;
+        color: var(--ep-ink);
+    }
+
+    .changelog h2 {
+        font-size: 20px;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 5px;
+        color: var(--ep-green);
+        margin-top: 0;
+        transition: color 0.3s, border-bottom-color 0.3s;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin-top: 15px;
+    }
+
+    li {
+        margin-bottom: 10px;
+        font-size: 15px;
+        color: var(--ep-muted);
+        transition: color 0.3s;
+    }
+
+    .section-title {
+        color: var(--ep-green);
+        font-size: 20px;
+        margin-top: 40px;
+        text-align: right;
+        border-bottom: 2px solid #e5e7eb;
+        padding-bottom: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
+        transition: color 0.3s, border-bottom-color 0.3s;
+    }
+
+    .install-step {
+        text-align: right;
+        margin-top: 20px;
+        background-color: var(--ep-card);
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        width: 100%;
+    }
+
+    .install-step h3 {
+        color: var(--ep-green);
+        font-size: 18px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        transition: color 0.3s;
+    }
+
+    .install-step p {
+        color: var(--ep-muted);
+        font-size: 15px;
+        transition: color 0.3s;
+    }
+
+    .install-step img {
+        width: 100%;
+        max-width: 400px;
+        border-radius: 8px;
+        margin-top: 10px;
+        display: block;
+        margin-inline-start: auto;
+        margin-inline-end: auto;
+    }
+
+    /* Signature */
+    .signature{
+        position:fixed;bottom:12px;left:50%;transform:translateX(-50%);
+        background:#fff;border:2px solid var(--ep-green);border-radius:12px;
+        padding:8px 16px;box-shadow:0 8px 24px rgba(0,0,0,.15);
+        text-align:center;z-index:999;
+        transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+    }
+    .signature .name{
+        font-weight:800;font-size:10px;color:var(--ep-green);margin-bottom:2px;
+        transition: color 0.3s ease;
+    }
+    .signature .position{
+        font-size:11px;color:var(--ep-muted);font-weight:600;line-height:1.3;
+        transition: color 0.3s ease;
+    }
+
+    /* Responsive */
+    @media (max-width:780px){
+        .brand h1{font-size:18px}
+        .brand img{height:100px}
+    }
+    @media (max-width:520px){
+        header{padding: 6px 12px;}
+        .brand img{height: 48px;}
+        .brand h1{display:none}
         .container {
-            max-width: 600px;
-            margin: 0 auto 20px;
-            background-color: var(--ep-card);
-            padding: 30px;
-            border-radius: var(--radius);
-            box-shadow: 0 8px 22px rgba(0,0,0,0.06);
-            border: 1px solid #e5e7eb;
-            transition: background-color 0.3s, border-color 0.3s, color 0.3s;
-        }
-
-        h1 {
-            color: var(--ep-green);
-            font-size: 28px;
-            margin: 0 0 10px;
-        }
-
-        .version-info {
-            color: var(--ep-muted);
-            font-size: 16px;
-            font-weight: 600;
-            margin-bottom: 25px;
-        }
-
-        .changelog {
-            text-align: right;
-            margin-top: 25px;
-        }
-
-        .changelog h2 {
-            font-size: 20px;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 5px;
-            color: var(--ep-green);
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin-top: 15px;
-        }
-
-        li {
-            margin-bottom: 10px;
-            font-size: 15px;
-        }
-
-        .download-btn {
-            display: inline-block;
-            padding: 14px 32px;
-            background-color: var(--ep-green);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            margin-top: 30px;
-            transition: background-color 0.2s;
+            margin: 10px auto;
+            padding: 20px 15px;
+            border-radius: 0;
+            box-shadow: none;
             border: none;
-            cursor: pointer;
         }
-
-        .download-btn:hover {
-            background-color: var(--ep-green-2);
-        }
-
-        .section-title {
-            color: var(--ep-green);
-            font-size: 20px;
-            margin-top: 40px;
-            text-align: right;
-            border-bottom: 2px solid #e5e7eb;
-            padding-bottom: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 10px;
-        }
-
-        .install-step {
-            text-align: right;
-            margin-top: 20px;
-            background-color: var(--ep-card);
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
-        }
-
-        .install-step h3 {
-            color: var(--ep-green);
-            font-size: 18px;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .install-step p {
-            color: var(--ep-muted);
-            font-size: 15px;
-        }
-
-        .install-step img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 8px;
-            margin-top: 10px;
-            display: block;
-            margin-inline-start: auto;
-            margin-inline-end: auto;
-        }
-
-        .signature {
-            position: fixed;
-            bottom: 12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--ep-card);
-            border: 2px solid var(--ep-green);
-            border-radius: 12px;
-            padding: 8px 16px;
-            box-shadow: 0 8px 24px rgba(0,0,0,.15);
-            text-align: center;
-            z-index: 999;
-            transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
-        }
-
-        .signature .name {
-            font-weight: 800;
-            font-size: 10px;
-            color: var(--ep-green);
-            margin-bottom: 2px;
-            transition: color 0.3s ease;
-        }
-
-        .signature .position {
-            font-size: 11px;
-            color: var(--ep-muted);
-            font-weight: 600;
-            line-height: 1.3;
-            transition: color 0.3s ease;
-        }
-
-        .signature-credit {
-          display: none; /* Hide the old footer credit */
-        }
-    </style>
+    }
+</style>
 </head>
 <body>
 
+<header>
+    <div class="brand" id="brandLink">
+        <img src="https://egyptpost.gov.eg/img/nav-logo.svg" alt="Egypt Post Logo" />
+        <h1>دليل تليفونات البريد المصري</h1>
+    </div>
+    <div class="actions-bar">
+        <a href="./updates.html" class="icon-btn" title="تحديث">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-download"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+        </a>
+        <button id="themeToggleBtn" class="icon-btn" title="الوضع الليلي">🌙</button>
+        <button id="favPageBtn" class="icon-btn" title="المفضلة" style="display:none">⭐</button>
+        <button id="homePageBtn" class="icon-btn" title="الرئيسية">🏠</button>
+        <button id="toggleViewBtn" class="toggle-btn" title="تبديل عرض البيانات" style="display:none">عرض الكروت</button>
+    </div>
+</header>
+
+<main class="main-content">
     <div class="container">
         <h1>تحديث جديد متاح!</h1>
         <div class="version-info">الإصدار: 1.4 • تاريخ: 25 أغسطس 2025</div>
@@ -243,7 +342,6 @@
             <p>
                 قبل التثبيت، قد تظهر لك رسالة تحذير بأن التطبيق من مصدر غير معروف. هذا طبيعي لأنك تقوم بتثبيته مباشرةً من المتصفح. اضغط على "الإعدادات" ثم قم بتفعيل خيار "السماح بالتثبيت من هذا المصدر".
             </p>
-
         </div>
 
         <div class="install-step">
@@ -251,20 +349,43 @@
             <p>
                 بعض الأجهزة قد تظهر تحذيراً من Google Play Protect. يمكنك تجاهل هذا التحذير بأمان. اضغط على "مزيد من التفاصيل" أو "More details" ثم "التثبيت على أي حال" أو "Install anyway".
             </p>
-
         </div>
     </div>
+</main>
 
-    <div class="signature">
-      <div class="name">جهاد عبدالكريم</div>
-      <div class="position">رئيس قسم الدعم الفني<br>منطقة بريد البحيرة</div>
-    </div>
+<div class="signature">
+    <div class="name">جهاد عبدالكريم</div>
+    <div class="position">رئيس قسم الدعم الفني<br>منطقة بريد البحيرة</div>
+</div>
 
-    <script>
-        // Check for system dark mode preference
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            document.body.classList.add('dark-mode');
-        }
-    </script>
+<script>
+    // Theme toggle
+    const THEME_KEY = 'ep_theme';
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const brandLink = document.getElementById('brandLink');
+    const homePageBtn = document.getElementById('homePageBtn');
+
+    function initTheme(){
+        const theme = localStorage.getItem(THEME_KEY) || 'light';
+        document.body.classList.toggle('dark-mode', theme === 'dark');
+        themeToggleBtn.textContent = theme === 'dark' ? '☀️' : '🌙';
+    }
+    themeToggleBtn.addEventListener('click', ()=>{
+        const isDark = document.body.classList.toggle('dark-mode');
+        localStorage.setItem(THEME_KEY, isDark ? 'dark' : 'light');
+        themeToggleBtn.textContent = isDark ? '☀️' : '🌙';
+    });
+
+    // Navigation
+    brandLink.addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+    homePageBtn.addEventListener('click', () => {
+        window.location.href = 'index.html';
+    });
+
+    initTheme();
+</script>
+
 </body>
 </html>
